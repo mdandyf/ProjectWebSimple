@@ -1,6 +1,7 @@
 package com.example.mitrais.ProjectWebSimple.controller;
 
 import com.example.mitrais.ProjectWebSimple.dao.ProductRepository;
+import com.example.mitrais.ProjectWebSimple.exception.ProductNotFoundException;
 import com.example.mitrais.ProjectWebSimple.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getProduct(@PathVariable("id") String id) {
+        if(!productRepo.containsKey(id)) {throw new ProductNotFoundException();}
         return new ResponseEntity<>(productRepo.get(id), HttpStatus.OK);
     }
 
@@ -40,6 +42,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product) {
+        if(!productRepo.containsKey(id)) {throw new ProductNotFoundException();}
         productRepo.remove(id);
         product.setId(id);
         productRepo.put(id, product);
