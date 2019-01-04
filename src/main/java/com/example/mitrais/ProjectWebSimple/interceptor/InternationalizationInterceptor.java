@@ -12,8 +12,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
-import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
-
 @Configuration
 public class InternationalizationInterceptor extends WebMvcConfigurerAdapter {
     @Bean
