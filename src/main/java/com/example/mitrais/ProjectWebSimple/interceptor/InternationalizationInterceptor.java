@@ -1,7 +1,9 @@
 package com.example.mitrais.ProjectWebSimple.interceptor;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -9,6 +11,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
+
+import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 
 @Configuration
 public class InternationalizationInterceptor extends WebMvcConfigurerAdapter {
@@ -21,7 +25,7 @@ public class InternationalizationInterceptor extends WebMvcConfigurerAdapter {
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("language");
+        localeChangeInterceptor.setParamName("lang");
         return localeChangeInterceptor;
     }
 
